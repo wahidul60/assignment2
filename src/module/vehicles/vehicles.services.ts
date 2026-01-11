@@ -1,5 +1,4 @@
 import { pool } from "../../config/db";
-import { vehicleController } from "./vehicles.controller";
 
 const createVehicle = async (payload: Record<string, unknown>) => {
     const { vehicle_name, type, registration_number, daily_rent_price, availability_status } = payload;
@@ -9,5 +8,15 @@ const createVehicle = async (payload: Record<string, unknown>) => {
     return result;
 }
 
+const getAll = async () => {
+    const result = await pool.query(`SELECT * FROM Vehicles`)
+    return result;
+}
 
-export const vehicleService = { createVehicle }
+const getById = async (vehicleId : string) => {
+    const result = pool.query(`SELECT * FROM Vehicles WHERE id = $1, [id]`);
+    return result;
+}
+
+
+export const vehicleService = { createVehicle, getAll, getById }
