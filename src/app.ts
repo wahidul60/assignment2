@@ -1,17 +1,17 @@
 import express from "express"
 import { vehicleRouter } from "./module/vehicles/vehicles.route"
 import createDB from "./config/db"
+import { userRouter } from "./module/user/user.route";
+import { bookingRouter } from "./module/booking/booking.route";
 const app = express()
 
 app.use(express.json());
 
 createDB();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
 app.use("/api/v1", vehicleRouter)
+app.use("/api/v1", userRouter)
+app.use("/api/v1", bookingRouter)
 
 app.use((req, res) => {
     res.status(404).json({

@@ -4,7 +4,6 @@ import { vehicleService } from "./vehicles.services";
 
 const createVehicle = async (req: Request, res: Response) => {
 
-
     try {
         const result = await vehicleService.createVehicle(req.body)
         res.status(201).json({
@@ -14,7 +13,7 @@ const createVehicle = async (req: Request, res: Response) => {
         })
     } catch (err: any) {
         res.status(500).json({
-            message: "not created"
+            message: err.message
         })
     }
 }
