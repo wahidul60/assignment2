@@ -65,48 +65,87 @@ const getAdminBooking = async () => {
             status
         FROM
         Bookings
-
         `);
-       
-        console.log(bookingRes)
-        
 
-    const booking = bookingRes.rows.map(item=> {
-        item.customer_id
-    })
-    const customerRes = await pool.query(
-        `
+    console.log(bookingRes)
+    const result = [];
+    const bookings = bookingRes.rows
+
+    for (const booking of bookings) {
+
+        const customerRes = await pool.query(
+            `
             SELECT 
                 name, 
                 email 
             FROM Users 
             WHERE id=$1
         `,
-        [booking.customer_id])
+            [booking.customer_id])
 
-    const vehicleRes = await pool.query(
-        `
+        const vehicleRes = await pool.query(
+            `
             SELECT 
                 vehicle_name, 
-                registration_number 
+                registration_number   
             FROM Vehicles 
             WHERE id = $1
         `,
-        [booking.vehicle_id]
-    )
+            [booking.vehicle_id]
+        )
 
-    const result = {
-        ...bookingRes,
-        customerRes,
-        vehicleRes
+        result.push({
+            ...booking,
+            customer: customerRes.rows[0],
+            vehicle: vehicleRes.rows[0]
+        })
+
     }
-
     return result;
 }
 
 
+const getCustomerBooking = async () => {
+    const customerRes = await pool.query(`
+            SELECT 
+                id,
+                vehicle_id,
+                rent_start_date,
+                rent_end_date,
+                total_price,
+                status
+            FROM Bookings
+        `)
+        const result = [];
+    const bookings = customerRes.rows
+
+    for (const booking of bookings) {      
+
+        const vehicleRes = await pool.query(
+            `
+            SELECT 
+                vehicle_name, 
+                registration_number,
+                type
+            FROM Vehicles 
+            WHERE id = $1
+        `,
+            [booking.vehicle_id]
+        )
+
+        result.push({
+            ...booking,            
+            vehicle: vehicleRes.rows[0]
+        })
+
+    }
+    return result;
+}
+    
+
+
 export const bookingService = {
-    createBooking, getAdminBooking
+    createBooking, getAdminBooking, getCustomerBooking
 }
 
 

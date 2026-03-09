@@ -13,7 +13,7 @@ const createDB = async () => {
             email VARCHAR(50) UNIQUE NOT NULL,
             password TEXT NOT NULL CHECK (LENGTH(password) >=6 ),
             phone VARCHAR(13),
-            role VARCHAR(20)
+            role VARCHAR(20) NOT NULL
         )`);
 
     await pool.query(`
