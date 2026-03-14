@@ -67,7 +67,6 @@ const getAdminBooking = async () => {
         Bookings
         `);
 
-    console.log(bookingRes)
     const result = [];
     const bookings = bookingRes.rows
 

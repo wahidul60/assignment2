@@ -4,10 +4,9 @@ import auth from "../../middleware/auth";
 
 const route = express.Router()
 
-route.post("/signup",auth("admin"), userController.createUser)
-route.get("/users",  userController.getUser)
-route.put("/users/:userId", userController.updateUserById)
-route.delete("/users/:userId", userController.deleteUserById)
+route.get("/",  userController.getUser)
+route.put("/:userId", userController.updateUserById)
+route.delete("/:userId", userController.deleteUserById)
 
 export const userRouter = route;
 

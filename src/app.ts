@@ -10,10 +10,10 @@ app.use(express.json());
 
 createDB();
 
-app.use("/api/v1", userRouter)
+app.use("/api/v1/users", userRouter)
 app.use("/api/v1", vehicleRouter)
 app.use("/api/v1", bookingRouter)
-app.use("/auth", authRouter)
+app.use("/api/v1/auth", authRouter)
 
 app.use((req, res) => {
     res.status(404).json({

@@ -1,27 +1,6 @@
 import { Request, Response } from "express"
-import { pool } from "../../config/db"
 import { userService } from "./user.service"
 
-
-const createUser = async (req: Request, res: Response) => {
-    try {
-
-        const result = await userService.createUser(req.body)
-        res.status(201).json(
-            {
-                "success": true,
-                "message": "User registered successfully",
-                "data": result.rows
-            }
-        )
-
-    } catch (err: any) {
-        res.status(500).json({
-            "success": false,
-            "message": err.message
-        })
-    }
-}
 
 const getUser = async (req: Request, res: Response) => {
     try {
@@ -91,7 +70,7 @@ const deleteUserById = async (req: Request, res: Response) => {
 
 
 export const userController = {
-    createUser, getUser, updateUserById, deleteUserById
+    getUser, updateUserById, deleteUserById
 }
 
 
