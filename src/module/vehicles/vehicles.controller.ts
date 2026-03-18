@@ -9,7 +9,7 @@ const createVehicle = async (req: Request, res: Response) => {
         res.status(201).json({
             "success": true,
             "message": "Vehicle created successfully",
-            "data": result.rows
+            "data": result.rows[0]
         })
     } catch (err: any) {
         res.status(500).json({
@@ -61,13 +61,11 @@ const getById = async (req: Request, res: Response) => {
     }
 }
 
-
-const updateById = async (req: Request, res: Response) => {
-    const { daily_rent_price, availability_status } = req.body
+const updateById = async (req: Request, res: Response) => {   
 
     try {
-        const result = await vehicleService.updateById(daily_rent_price, availability_status, req.params.vehicleId as string)
-        if (result.rows.length === 0) {
+        const result = await vehicleService.updateById(req.body, req.params.vehicleId as string)
+        if (result.rowCount === 0) {
             res.status(404).json({
                 "success": false,
                 "message": "Vehicle not found"
@@ -75,8 +73,8 @@ const updateById = async (req: Request, res: Response) => {
         } else {
             res.status(200).json({
                 "success": true,
-                "message": "Vehicle retrieved successfully",
-                "data": result.rows
+                "message": "Vehicle updated successfully",
+                "data": result.rows[0]
             })
         }
 
@@ -104,8 +102,9 @@ const deleteById = async (req: Request, res: Response) => {
             })
         }
 
-    } catch (err: any) {
-        res.status(500).json({
+    } catch (err: any) {        
+
+        res.status(400).json({
             "success": false,
             "message": err.message
         })

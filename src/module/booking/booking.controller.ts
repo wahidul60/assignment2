@@ -7,12 +7,21 @@ const createBooking = async (req: Request, res: Response) => {
         res.status(201).json(
             {
                 "success": true,
-                "message": "Bookings retrieved successfully",
+                "message": "Bookings created successfully",
                 "data": [result],
             }
         )
     } catch (err: any) {
-        res.status(500).json({
+        let statusCode = 400;
+
+        if (err.message.includes("no vehicle found")) {
+            statusCode = 404;
+        }
+
+        if (err.message.includes("This vehicle already booked")) {
+            statusCode = 400;
+        }
+        res.status(statusCode).json({
             "success": false,
             "message": err.message
         })
@@ -57,8 +66,8 @@ const getCustomerBooking = async (req: Request, res: Response) => {
 
 export const bookingController = {
     createBooking,
-     getAdminBooking, 
-     getCustomerBooking
+    getAdminBooking,
+    getCustomerBooking
 }
 
 

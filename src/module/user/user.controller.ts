@@ -16,14 +16,13 @@ const getUser = async (req: Request, res: Response) => {
             "message": err.message
         })
     }
-
 }
 
 const updateUserById = async (req: Request, res: Response) => {
     try {
         const { name, email, phone, role } = req.body
-        const result = await userService.updateUserById(req.params.userId as string, name, email, phone, role)
-
+        const result = await userService.updateUserById(req.params.userId as string, name, email, phone, role, req.user)
+        console.log(req.user)
         if (result.rows.length === 0) {
             res.status(404).json({
                 "success": false,
@@ -33,7 +32,7 @@ const updateUserById = async (req: Request, res: Response) => {
             res.status(200).json({
                 "success": true,
                 "message": "User updated successfully",
-                "data": result.rows
+                "data": result.rows[0]
             })
         }
     } catch (err: any) {

@@ -8,17 +8,17 @@ const auth = (...roles : string[]) => {
         const token = req.headers.authorization;
 
         try {
-
             if (!token) {
-                return res.status(500).json({ message: "You are not allowed" })
+                return res.status(500).json({ message: "Please Login" })
             }
 
             const decode = jwt.verify(token, config.Secret as string)as JwtPayload;
             req.user = decode ;
+            console.log(req.user)
             if(roles.length && !roles.includes(decode.role as string)) {
                 return res.status(500).json(
                     {
-                        error : "unauthorized"
+                        error : "You are not allowed for this session"
                     }
                 );
             }

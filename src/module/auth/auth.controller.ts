@@ -26,10 +26,25 @@ const signin = async (req: Request, res: Response) => {
 
     try {
         const result = await authService.signin(email, password)
-        res.status(201).json(
+
+        if(result === null){
+            return res.status(404).json({
+                success : false,
+                message : "User not found"
+            })
+        }
+
+        if(result === false){
+            return res.status(401).json({
+                success : false,
+                message : "Invalid password"
+            })
+        }
+
+        res.status(200).json(
             {
                 "success": true,
-                "message": "login successful",
+                "message": "Login successful",
                 "data": result
             }
         )
