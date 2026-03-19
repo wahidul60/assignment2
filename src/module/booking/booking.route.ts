@@ -4,8 +4,8 @@ import auth from "../../middleware/auth";
 
 const route = express.Router()
 
-route.post("/bookings", auth("admin", "customer"), bookingController.createBooking)
-route.get("/adminbookings", auth("admin"), bookingController.getAdminBooking)
-route.get("/customerbookings", auth("customer"), bookingController.getCustomerBooking)
+route.post("/", auth("admin", "customer"), bookingController.createBooking)
+route.get("/", auth("admin", "customer"), bookingController.getBooking)
+route.get("/:bookingId", auth("customer"), bookingController.updateBookingStatus)
 
 export const bookingRouter = route;

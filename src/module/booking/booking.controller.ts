@@ -28,9 +28,9 @@ const createBooking = async (req: Request, res: Response) => {
     }
 }
 
-const getAdminBooking = async (req: Request, res: Response) => {
+const getBooking = async (req: Request, res: Response) => {
     try {
-        const result = await bookingService.getAdminBooking()
+        const result = await bookingService.getBooking(req.user)
         res.status(200).json(
             {
                 "success": true,
@@ -46,28 +46,30 @@ const getAdminBooking = async (req: Request, res: Response) => {
     }
 }
 
-const getCustomerBooking = async (req: Request, res: Response) => {
+const updateBookingStatus = async (req: Request, res: Response) => {
+    const {status} = req.body
     try {
-        const result = await bookingService.getAdminBooking()
+        const result = await bookingService.updateBookingStatus(req.params.bookingId as string, req.user, status)
         res.status(200).json(
             {
                 "success": true,
-                "message": "Bookings retrieved successfully",
-                "data": result
+                "message": "Bookings cancelled successfully",
+                "data": result.rows[0]
             }
         )
     } catch (err: any) {
-        res.status(500).json({
+        res.status(400).json({
             "success": false,
             "message": err.message
         })
     }
 }
+
 
 export const bookingController = {
     createBooking,
-    getAdminBooking,
-    getCustomerBooking
+    getBooking,
+    updateBookingStatus
 }
 
 
