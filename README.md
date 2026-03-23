@@ -1,48 +1,70 @@
-﻿## Project Name: 🚗 Vehicle Rental System
-## Live URL : https://assignment2-zimg.vercel.app/
+# 🚗 Vehicle Rental System
 
+🔗 **Live URL:**  
+https://assignment2-zimg.vercel.app/
+
+🔗 **API Base URL:**  
+https://assignment2-zimg.vercel.app/api/v1
+
+🔗 **GitHub Repository:**  
+https://github.com/wahidul60/assignment2
+
+🔗 **Live Deployment:**  
+https://assignment2-zimg-nnfz6oov8-wahidul-hassans-projects.vercel.app
+
+---
 
 ## 🛠️ Features
-A backend API for a vehicle rental management system that handles:
-- 🚘 **Vehicles** - Manage vehicle inventory with availability tracking
-- 👤 **Customers** - Manage customer accounts and profiles
-- 📅 **Bookings** - Handle vehicle rentals, returns and cost calculation
-- 🔐 **Authentication** - Secure role-based access control (Admin and Customer roles)
 
+A backend API for a vehicle rental management system that handles:
+
+- 🚘 **Vehicles**
+  - Manage vehicle inventory
+  - Track availability status
+
+- 👤 **Customers**
+  - Manage customer accounts and profiles
+
+- 📅 **Bookings**
+  - Handle vehicle rentals and returns
+  - Automatic return system after `rent_end_date`
+  - Total cost calculation
+
+- 🔐 **Authentication**
+  - Secure role-based access control
+  - Roles: Admin & Customer
+
+---
 
 ## 🛠️ Technology Stack
-- **Node.js** + **TypeScript**
-- **Express.js** 
-- **PostgreSQL** 
-- **bcrypt** (password hashing)
-- **jsonwebtoken**(JWT) (authentication)
 
+- **Node.js** + **TypeScript**
+- **Express.js**
+- **PostgreSQL**
+- **bcrypt** (password hashing)
+- **jsonwebtoken (JWT)** for authentication
+
+---
 
 ## ⚙️ Setup & Installation
-1. Clone the repository
+
+### 1️⃣ Clone the Repository
+```bash
 git clone https://github.com/wahidul60/assignment2.git
-
-2. Navigate to project folder
+2️⃣ Navigate to Project Folder
 cd assignment2
-
-3. Install dependencies
+3️⃣ Install Dependencies
 npm install
+4️⃣ Setup Environment Variables
 
-4. Setup environment variables (.env)
-Example:
+Create a .env file in the root directory:
+
 PORT=5000
 DATABASE_URL=your_database_url
 JWT_SECRET=your_secret_key
-
-5. Run the server
+5️⃣ Run the Server
 npm run dev
 
 
-## 🚀 API Base URL
-https://assignment2-zimg.vercel.app/api/v1
-
-
-## Github Repo : https://github.com/wahidul60/assignment2
-## Live Deployment Link : assignment2-zimg-nnfz6oov8-wahidul-hassans-projects.vercel.app
-
-
+👨‍💻 Author
+Wahidul Hassan
