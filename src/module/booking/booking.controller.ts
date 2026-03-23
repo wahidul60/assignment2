@@ -54,7 +54,7 @@ const updateBookingStatus = async (req: Request, res: Response) => {
             {
                 "success": true,
                 "message": "Bookings cancelled successfully",
-                "data": result.rows[0]
+                "data": result
             }
         )
     } catch (err: any) {
