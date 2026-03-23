@@ -21,7 +21,13 @@ const updateUserById = async (userId: string, name: string, email: string, phone
 
     if (currentUser.role !== "admin") {
         result = await pool.query(`
-                UPDATE Users SET name = $1, email = $2, phone = $3 WHERE id = $4 RETURNING id, name, email, phone, role
+                UPDATE Users SET 
+                name = $1, 
+                email = $2, 
+                phone = $3 
+                WHERE id = $4 
+                RETURNING 
+                id, name, email, phone, role
                 `, [name, email, phone, userId])
     } else {
         result = await pool.query(`

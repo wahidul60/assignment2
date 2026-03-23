@@ -4,11 +4,13 @@ import createDB from "./config/db"
 import { userRouter } from "./module/user/user.route";
 import { bookingRouter } from "./module/booking/booking.route";
 import { authRouter } from "./module/auth/auth.router";
+import { cornScheduller } from "./jobs/cron";
 const app = express()
 
 app.use(express.json());
 
 createDB();
+cornScheduller()
 
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/vehicles", vehicleRouter)
