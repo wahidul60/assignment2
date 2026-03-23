@@ -56,15 +56,10 @@ cd assignment2
 3️⃣ Install Dependencies
 npm install
 4️⃣ Setup Environment Variables
-
 Create a .env file in the root directory:
-
 PORT=5000
 DATABASE_URL=your_database_url
 JWT_SECRET=your_secret_key
 5️⃣ Run the Server
 npm run dev
 
-
-👨‍💻 Author
-Wahidul Hassan
