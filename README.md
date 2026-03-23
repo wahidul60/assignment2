@@ -19,22 +19,22 @@ A backend API for a vehicle rental management system that handles:
 
 
 ## ⚙️ Setup & Installation
-# 1. Clone the repository
+1. Clone the repository
 git clone https://github.com/wahidul60/assignment2.git
 
-# 2. Navigate to project folder
+2. Navigate to project folder
 cd assignment2
 
-# 3. Install dependencies
+3. Install dependencies
 npm install
 
-# 4. Setup environment variables (.env)
-# Example:
+4. Setup environment variables (.env)
+Example:
 PORT=5000
 DATABASE_URL=your_database_url
 JWT_SECRET=your_secret_key
 
-# 5. Run the server
+5. Run the server
 npm run dev
 
 
